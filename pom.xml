@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>com.qlangtech.tis</groupId>
-        <artifactId>tis-parent</artifactId>
-        <version>2.0.1</version>
-    </parent>
-    <groupId>com.gkatzioura.maven.cloud</groupId>
+    <groupId>com.qlangtech.maven.cloud</groupId>
+<!--    <groupId>com.gkatzioura.maven.cloud</groupId>-->
     <artifactId>cloud-storage-maven</artifactId>
     <packaging>pom</packaging>
     <version>2.3</version>
 
     <name>Cloud Storage</name>
     <description>The CloudStorage project enables you to use the storage options of cloud provides (Google Cloud) storage as maven repositories.</description>
-    <url>https://github.com/gkatzioura/CloudStorage</url>
+    <url>https://github.com/qlangtech/CloudStorage</url>
 
     <licenses>
         <license>
@@ -53,6 +49,8 @@
         <junit.version>4.12</junit.version>
         <maven.plugin.api.version>3.0</maven.plugin.api.version>
         <maven.plugin.annotations.version>3.4</maven.plugin.annotations.version>
+        <releasesRepository>https://oss.sonatype.org/service/local/staging/deploy/maven2/</releasesRepository>
+        <snapshotRepository>https://oss.sonatype.org/content/repositories/snapshots/</snapshotRepository>
     </properties>
 
 <!--    <distributionManagement>-->
@@ -68,6 +66,79 @@
 <!--        </repository>-->
 <!--        <downloadUrl>https://oss.sonatype.org/content/groups/public/org/knowm/xchart</downloadUrl>-->
 <!--    </distributionManagement>-->
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <url>${releasesRepository}</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>${snapshotRepository}</url>
+            <uniqueVersion>true</uniqueVersion>
+        </snapshotRepository>
+    </distributionManagement>
+
+     <profiles>
+         <profile>
+             <!--https://central.sonatype.org/pages/apache-maven.html-->
+             <id>ossrh</id>
+             <properties>
+
+                 <gpg.executable>gpg2</gpg.executable>
+                 <!--
+                  <gpg.passphrase>the_pass_phrase</gpg.passphrase>
+                 -->
+             </properties>
+             <build>
+                 <plugins>
+                     <plugin>
+                         <groupId>org.sonatype.plugins</groupId>
+                         <artifactId>nexus-staging-maven-plugin</artifactId>
+                         <version>1.6.7</version>
+                         <extensions>true</extensions>
+                         <configuration>
+                             <serverId>releases</serverId>
+                             <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                             <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                         </configuration>
+                     </plugin>
+                     <plugin>
+                         <groupId>org.apache.maven.plugins</groupId>
+                         <artifactId>maven-gpg-plugin</artifactId>
+                         <version>1.5</version>
+                         <executions>
+                             <execution>
+                                 <id>sign-artifacts</id>
+                                 <phase>verify</phase>
+                                 <goals>
+                                     <goal>sign</goal>
+                                 </goals>
+                             </execution>
+                         </executions>
+                     </plugin>
+                     <plugin>
+                         <groupId>org.apache.maven.plugins</groupId>
+                         <artifactId>maven-javadoc-plugin</artifactId>
+                         <version>2.10.3</version>
+                         <configuration>
+                             <charset>UTF16</charset>
+                             <aggregate>true</aggregate>
+                             <additionalparam>-Xdoclint:none</additionalparam>
+                         </configuration>
+                         <executions>
+                             <execution>
+                                 <id>attach-javadocs</id>
+                                 <goals>
+                                     <goal>jar</goal>
+                                 </goals>
+                             </execution>
+                         </executions>
+                     </plugin>
+                 </plugins>
+             </build>
+         </profile>
+     </profiles>
 
     <build>
         <plugins>
@@ -132,10 +203,10 @@
     </build>
 
     <modules>
-        <module>GoogleStorageWagon</module>
         <module>CloudStorageCore</module>
-        <module>AzureStorageWagon</module>
-        <module>S3StorageWagon</module>
+<!--        <module>GoogleStorageWagon</module>-->
+<!--        <module>AzureStorageWagon</module>-->
+<!--        <module>S3StorageWagon</module>-->
         <module>AliyunOSSStorageWagon</module>
     </modules>
 

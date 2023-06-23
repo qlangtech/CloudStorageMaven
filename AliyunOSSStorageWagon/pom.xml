@@ -4,8 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>cloud-storage-maven</artifactId>
-        <groupId>com.gkatzioura.maven.cloud</groupId>
+        <groupId>com.qlangtech.maven.cloud</groupId>
         <version>2.3</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -50,7 +51,7 @@
 <!--            <version>${aws.version}</version>-->
 <!--        </dependency>-->
         <dependency>
-            <groupId>com.gkatzioura.maven.cloud</groupId>
+            <groupId>com.qlangtech.maven.cloud</groupId>
             <artifactId>cloud-storage-core</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
