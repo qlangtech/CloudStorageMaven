@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
+    <parent>
+        <groupId>com.qlangtech.tis</groupId>
+        <artifactId>tis-parent</artifactId>
+        <version>2.0.0</version>
+    </parent>
     <groupId>com.gkatzioura.maven.cloud</groupId>
     <artifactId>cloud-storage-maven</artifactId>
     <packaging>pom</packaging>
     <version>2.3</version>
-  
+
     <name>Cloud Storage</name>
     <description>The CloudStorage project enables you to use the storage options of cloud provides (Google Cloud) storage as maven repositories.</description>
     <url>https://github.com/gkatzioura/CloudStorage</url>
@@ -26,12 +30,19 @@
             <organization>egkatzioura</organization>
             <organizationUrl>https://egkatzioura.com/</organizationUrl>
         </developer>
+
+        <developer>
+            <name>baisui</name>
+            <email>baisui@qlangtech.com</email>
+            <organization>qlangtech</organization>
+            <organizationUrl>https://tis.pub/</organizationUrl>
+        </developer>
     </developers>
 
     <scm>
-        <url>https://github.com/gkatzioura/CloudStorage</url>
-        <connection>scm:git:https://github.com/gkatzioura/CloudStorage.git</connection>
-        <developerConnection>scm:git:https://github.com/gkatzioura/CloudStorage.git</developerConnection>
+        <url>https://github.com/qlangtech/CloudStorageMaven</url>
+        <connection>scm:git@github.com:qlangtech/CloudStorageMaven.git</connection>
+        <developerConnection>scm:git:https://github.com/qlangtech/CloudStorageMaven.git</developerConnection>
       <tag>HEAD</tag>
   </scm>
 
@@ -44,19 +55,19 @@
         <maven.plugin.annotations.version>3.4</maven.plugin.annotations.version>
     </properties>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-        <downloadUrl>https://oss.sonatype.org/content/groups/public/org/knowm/xchart</downloadUrl>
-    </distributionManagement>
+<!--    <distributionManagement>-->
+<!--        <snapshotRepository>-->
+<!--            <id>sonatype-nexus-snapshots</id>-->
+<!--            <name>Sonatype Nexus Snapshots</name>-->
+<!--            <url>http://oss.sonatype.org/content/repositories/snapshots</url>-->
+<!--        </snapshotRepository>-->
+<!--        <repository>-->
+<!--            <id>sonatype-nexus-staging</id>-->
+<!--            <name>Nexus Release Repository</name>-->
+<!--            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>-->
+<!--        </repository>-->
+<!--        <downloadUrl>https://oss.sonatype.org/content/groups/public/org/knowm/xchart</downloadUrl>-->
+<!--    </distributionManagement>-->
 
     <build>
         <plugins>
@@ -125,6 +136,7 @@
         <module>CloudStorageCore</module>
         <module>AzureStorageWagon</module>
         <module>S3StorageWagon</module>
+        <module>AliyunOSSStorageWagon</module>
     </modules>
 
 </project>
