@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.gkatzioura.maven.cloud.resolver.KeyResolver;
@@ -36,6 +38,8 @@ public class OSSStorageWagon extends AbstractStorageWagon {
     private OSSStorageRepository ossRepository;
     private final KeyResolver keyResolver = new KeyResolver();
     private static final Logger LOGGER = Logger.getLogger(OSSStorageWagon.class.getName());
+    public static final Pattern TIS_PKG_TPI_EXTENSION = Pattern.compile(".+?\\.(tpi|tar)(\\.[^\\.]+)?$");
+
 
     @Override
     public void get(String resourceName, File destination) throws TransferFailedException, ResourceDoesNotExistException, AuthorizationException {
@@ -66,6 +70,12 @@ public class OSSStorageWagon extends AbstractStorageWagon {
     @Override
     public void put(File file, String resourceName) throws TransferFailedException, ResourceDoesNotExistException, AuthorizationException {
         Resource resource = new Resource(resourceName);
+
+        Matcher matcher = TIS_PKG_TPI_EXTENSION.matcher(resourceName);
+        if (matcher.matches()) {
+            LOGGER.log(Level.FINER, String.format("skip tip deploy: %s", resourceName));
+            return;
+        }
 
         LOGGER.log(Level.FINER, String.format("Uploading file %s to %s", file.getAbsolutePath(), resourceName));
 
@@ -158,7 +168,7 @@ public class OSSStorageWagon extends AbstractStorageWagon {
         final String directory = containerResolver.resolve(repository);
 
         LOGGER.log(Level.FINER, String.format("Opening connection for  and directory %s", directory));
-        ossRepository = new OSSStorageRepository( directory, new PublicReadProperty(true));
+        ossRepository = new OSSStorageRepository(directory, new PublicReadProperty(true));
         ossRepository.connect(authenticationInfo, null);
 
         sessionListenerContainer.fireSessionLoggedIn();

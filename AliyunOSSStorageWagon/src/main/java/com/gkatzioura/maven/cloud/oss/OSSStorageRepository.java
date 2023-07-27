@@ -44,8 +44,12 @@ import com.gkatzioura.maven.cloud.transfer.TransferProgress;
 import com.gkatzioura.maven.cloud.transfer.TransferProgressFileInputStream;
 import com.gkatzioura.maven.cloud.transfer.TransferProgressFileOutputStream;
 import com.gkatzioura.maven.cloud.wagon.PublicReadProperty;
+import com.qlangtech.tis.AliyunOSSCfg;
+import com.qlangtech.tis.OssConfig;
 
 public class OSSStorageRepository {
+
+    public static final String OSS_CONFIG_NAME = "mvn-config";
 
     //private final String bucket;
     private final String baseDirectory;
@@ -83,9 +87,9 @@ public class OSSStorageRepository {
 
 
     public void connect(AuthenticationInfo authenticationInfo, String region) throws AuthenticationException {
-        this.ossCfg = TaskConfig.getInstance().getOss();
+        this.ossCfg = AliyunOSSCfg.getInstance().getOss(OSS_CONFIG_NAME); // TaskConfig.getInstance().getOss();
         Objects.requireNonNull(ossCfg, "ossCfg can not be null");
-        this.aliyunOSS = TaskConfig.getInstance().getOSSClient(); //S3Connect.connect(authenticationInfo, region, endpoint, pathStyle);
+        this.aliyunOSS = this.ossCfg.getOSS();// TaskConfig.getInstance().getOSSClient(); //S3Connect.connect(authenticationInfo, region, endpoint, pathStyle);
     }
 
     public void copy(String resourceName, File destination, TransferProgress transferProgress) throws TransferFailedException, ResourceDoesNotExistException {
