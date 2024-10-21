@@ -27,6 +27,7 @@
         </dependency>
 
         <!--add for execute for jdk11 start 2024/10/21-->
+
         <dependency>
             <groupId>com.sun.xml.bind</groupId>
             <artifactId>jaxb-impl</artifactId>
@@ -118,7 +119,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.9.0</version>
                 <executions>
                     <execution>
                         <id>default-descriptor</id>
