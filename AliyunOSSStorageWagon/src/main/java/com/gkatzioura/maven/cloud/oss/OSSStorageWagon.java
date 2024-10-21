@@ -31,7 +31,7 @@ import com.gkatzioura.maven.cloud.wagon.AbstractStorageWagon;
 import com.gkatzioura.maven.cloud.wagon.PublicReadProperty;
 
 /**
- * @author: baisui(baisui@qlangtech.com)
+ * baisui(baisui@qlangtech.com)
  * 2023-06-23 09:21
  **/
 public class OSSStorageWagon extends AbstractStorageWagon {
