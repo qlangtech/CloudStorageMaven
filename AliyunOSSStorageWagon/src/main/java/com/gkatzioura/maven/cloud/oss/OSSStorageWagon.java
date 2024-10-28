@@ -5,6 +5,7 @@ import org.apache.maven.wagon.ConnectionException;
 import org.apache.maven.wagon.PathUtils;
 import org.apache.maven.wagon.ResourceDoesNotExistException;
 import org.apache.maven.wagon.TransferFailedException;
+import org.apache.maven.wagon.WagonConstants;
 import org.apache.maven.wagon.authentication.AuthenticationException;
 import org.apache.maven.wagon.authentication.AuthenticationInfo;
 import org.apache.maven.wagon.authorization.AuthorizationException;
@@ -46,7 +47,7 @@ public class OSSStorageWagon extends AbstractStorageWagon {
         Resource resource = new Resource(resourceName);
         transferListenerContainer.fireTransferInitiated(resource, TransferEvent.REQUEST_GET);
         transferListenerContainer.fireTransferStarted(resource, TransferEvent.REQUEST_GET, destination);
-
+        resource.setContentLength(WagonConstants.UNKNOWN_LENGTH);
         final TransferProgress transferProgress = new TransferProgressImpl(resource, TransferEvent.REQUEST_GET, transferListenerContainer);
 
         try {

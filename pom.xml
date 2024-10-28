@@ -5,7 +5,7 @@
 <!--    <groupId>com.gkatzioura.maven.cloud</groupId>-->
     <artifactId>cloud-storage-maven</artifactId>
     <packaging>pom</packaging>
-    <version>4.0.0</version>
+    <version>4.1.0</version>
 
     <name>Cloud Storage</name>
     <description>The CloudStorage project enables you to use the storage options of cloud provides (Google Cloud) storage as maven repositories.</description>
@@ -43,11 +43,11 @@
   </scm>
 
     <properties>
-        <wagon.version>3.0.0</wagon.version>
+        <wagon.version>3.5.3</wagon.version>
         <logback.version>1.2.3</logback.version>
         <commons-io.version>2.6</commons-io.version>
         <junit.version>4.12</junit.version>
-        <maven.plugin.api.version>3.0</maven.plugin.api.version>
+        <maven.plugin.api.version>3.3.9</maven.plugin.api.version>
         <maven.plugin.annotations.version>3.4</maven.plugin.annotations.version>
         <releasesRepository>https://oss.sonatype.org/service/local/staging/deploy/maven2/</releasesRepository>
         <snapshotRepository>https://oss.sonatype.org/content/repositories/snapshots/</snapshotRepository>
