@@ -39,7 +39,9 @@ public class OSSStorageWagon extends AbstractStorageWagon {
     private OSSStorageRepository ossRepository;
     private final KeyResolver keyResolver = new KeyResolver();
     private static final Logger LOGGER = Logger.getLogger(OSSStorageWagon.class.getName());
-    public static final Pattern TIS_PKG_TPI_EXTENSION = Pattern.compile(".+?\\.(tpi|tar)(\\.[^\\.]+)?$");
+   // public static final Pattern TIS_PKG_TPI_EXTENSION = Pattern.compile(".+?\\.(tpi|tar)(\\.[^\\.]+)?$");
+
+    public static final Pattern TIS_PKG_TPI_EXTENSION = Pattern.compile(".+?\\.(tar)(\\.[^\\.]+)?$");
 
 
     @Override
