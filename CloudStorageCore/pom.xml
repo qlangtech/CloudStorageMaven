@@ -3,7 +3,7 @@
     <parent>
         <artifactId>cloud-storage-maven</artifactId>
         <groupId>com.qlangtech.maven.cloud</groupId>
-        <version>4.1.0</version>
+        <version>4.2.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
